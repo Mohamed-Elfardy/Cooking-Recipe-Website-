@@ -1,0 +1,341 @@
+/* ==========================================================================
+   global.css — Base Stylesheet & Design System
+   Cooking & Recipe Website | COM209 – Internet Technology
+   Author : Mohamed Yasser (Team Leader)
+   Note   : Import this file FIRST before any other CSS file.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CSS RESET
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+
+/* ==========================================================================
+   2. DESIGN TOKENS — CSS Custom Properties
+   These are the default (Light Green) theme values.
+   themes.css overrides them per theme via body.theme-dark, etc.
+   ========================================================================== */
+
+:root {
+  /* --- Colors --- */
+  --color-primary:      #2E7D32;
+  --color-primary-dark: #1B5E20;
+  --color-primary-light:#A5D6A7;
+  --color-accent:       #FF6F00;
+  --color-accent-light: #FFE0B2;
+  --color-danger:       #C62828;
+  --color-success:      #2E7D32;
+  --color-warning:      #F9A825;
+
+  /* --- Backgrounds --- */
+  --bg-primary:   #FFFFFF;
+  --bg-secondary: #F5F5F5;
+  --bg-card:      #FFFFFF;
+  --bg-input:     #FFFFFF;
+  --bg-nav:       #FFFFFF;
+
+  /* --- Text --- */
+  --text-primary:   #212121;
+  --text-secondary: #555555;
+  --text-muted:     #9E9E9E;
+  --text-inverse:   #FFFFFF;
+
+  /* --- Borders --- */
+  --border-color: #E0E0E0;
+  --border-focus: #2E7D32;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.14);
+
+  /* --- Border Radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* --- Spacing Scale --- */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  48px;
+  --space-xxl: 80px;
+
+  /* --- Typography --- */
+  --font-main: 'Poppins', 'Segoe UI', sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --font-size-base: 1rem;
+  --line-height-body: 1.7;
+  --line-height-heading: 1.25;
+
+  /* --- Transitions --- */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow:   0.5s ease;
+
+  /* --- Z-index scale --- */
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    300;
+  --z-toast:    400;
+}
+
+
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--line-height-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem;     }
+h6 { font-size: 0.875rem; }
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--text-secondary);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong { font-weight: 700; }
+em     { font-style: italic; }
+
+small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding: var(--space-sm) var(--space-lg);
+  margin: var(--space-lg) 0;
+  font-style: italic;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  background-color: var(--bg-secondary);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--color-primary-dark);
+}
+
+figure {
+  margin: var(--space-lg) 0;
+}
+
+figcaption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   4. SELECTION & SCROLLBAR
+   ========================================================================== */
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   5. SCROLL-TO-TOP BUTTON (created by main.js)
+   ========================================================================== */
+
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--text-inverse);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  z-index: var(--z-toast);
+}
+
+#scrollToTopBtn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#scrollToTopBtn:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+
+/* ==========================================================================
+   6. UTILITY CLASSES
+   ========================================================================== */
+
+/* --- Display --- */
+.hidden           { display: none !important; }
+.visually-hidden  { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.block            { display: block; }
+.flex             { display: flex; }
+.inline-flex      { display: inline-flex; }
+.grid             { display: grid; }
+
+/* --- Text alignment --- */
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+
+/* --- Font weight --- */
+.font-normal  { font-weight: 400; }
+.font-medium  { font-weight: 500; }
+.font-bold    { font-weight: 700; }
+
+/* --- Text color --- */
+.text-primary   { color: var(--color-primary); }
+.text-muted     { color: var(--text-muted); }
+.text-danger    { color: var(--color-danger); }
+.text-success   { color: var(--color-success); }
+
+/* --- Margin top --- */
+.mt-1 { margin-top: var(--space-xs); }
+.mt-2 { margin-top: var(--space-sm); }
+.mt-3 { margin-top: var(--space-md); }
+.mt-4 { margin-top: var(--space-lg); }
+.mt-5 { margin-top: var(--space-xl); }
+
+/* --- Margin bottom --- */
+.mb-1 { margin-bottom: var(--space-xs); }
+.mb-2 { margin-bottom: var(--space-sm); }
+.mb-3 { margin-bottom: var(--space-md); }
+.mb-4 { margin-bottom: var(--space-lg); }
+.mb-5 { margin-bottom: var(--space-xl); }
+
+/* --- Padding --- */
+.p-1 { padding: var(--space-xs); }
+.p-2 { padding: var(--space-sm); }
+.p-3 { padding: var(--space-md); }
+.p-4 { padding: var(--space-lg); }
+
+/* --- Width --- */
+.w-full  { width: 100%; }
+.w-half  { width: 50%; }
+.w-auto  { width: auto; }
+
+/* --- Flex helpers --- */
+.items-center   { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between{ justify-content: space-between; }
+.gap-1 { gap: var(--space-xs); }
+.gap-2 { gap: var(--space-sm); }
+.gap-3 { gap: var(--space-md); }
+.gap-4 { gap: var(--space-lg); }
+
+/* --- Misc --- */
+.rounded    { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: var(--radius-full); }
+.shadow     { box-shadow: var(--shadow-md); }
+.overflow-hidden { overflow: hidden; }
+.cursor-pointer  { cursor: pointer; }
